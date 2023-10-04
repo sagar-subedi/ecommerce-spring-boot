@@ -1,8 +1,8 @@
 package com.cotiviti.ecommerce.controller;
 
-import com.cotiviti.ecommerce.dto.LoginRequest;
-import com.cotiviti.ecommerce.dto.RegisterRequest;
+import com.cotiviti.ecommerce.dto.*;
 import com.cotiviti.ecommerce.service.AuthService;
+import com.cotiviti.ecommerce.service.RefreshTokenService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -11,6 +11,9 @@ import org.springframework.web.bind.annotation.*;
 public class AuthController {
     @Autowired  
     private AuthService authService;
+
+    @Autowired
+    private RefreshTokenService refreshTokenService;
 
     @GetMapping("/users")
     public String getUsers(){
@@ -24,9 +27,20 @@ public class AuthController {
     }
 
     @PostMapping("/login")
-    public String loginUser(@RequestBody LoginRequest loginRequest){
-        boolean isValid = authService.loginUser(loginRequest);
-        if(isValid) return "User credentials valid";
-        return  "Users credentials not matched";
+    public TokenResponse loginUser(@RequestBody LoginRequest loginRequest){
+        return  authService.loginUser(loginRequest);
     }
+
+    @PostMapping("/token/new")
+    public TokenResponse newTokenRequest(@RequestBody NewTokenRequest newTokenRequest){
+        return authService.refreshToken(newTokenRequest);
+    }
+
+    @PostMapping("/logout")
+    public String logout(@RequestBody NewTokenRequest logoutRequest){
+        refreshTokenService.deleteRefreshToken(logoutRequest.getRefreshToken());
+        return "Refresh Token Deleted Successful";
+
+    }
+
 }
