@@ -1,5 +1,7 @@
 package com.cotiviti.ecommerce.model;
 
+import com.cotiviti.ecommerce.OrderStatus;
+import com.cotiviti.ecommerce.enums.UserRole;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -17,5 +19,7 @@ public class User {
     @Column(unique = true)
     private  String username;
     private String password;
+    @Enumerated(EnumType.STRING)
+    private UserRole role;
 
 }

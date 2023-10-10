@@ -5,6 +5,7 @@ import lombok.Data;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table(name="orders")
@@ -20,7 +21,8 @@ public class Order {
     private String shippingAddress;
     private double totalAmount;
 
-//    private List<OrderItem> orderItems;
+    @OneToMany
+    private List<OrderItem> orderItems;
     @Enumerated(EnumType.STRING)
     private OrderStatus orderStatus;
 }
