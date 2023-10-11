@@ -30,6 +30,8 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 import java.security.interfaces.RSAPrivateKey;
 import java.security.interfaces.RSAPublicKey;
 
+import static org.springframework.boot.autoconfigure.security.servlet.PathRequest.toH2Console;
+
 @Configuration
 @RequiredArgsConstructor
 public class SecurityConfig {
@@ -49,6 +51,7 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception {
         return httpSecurity.cors().and()
                 .csrf().disable()
+                .headers(headers -> headers.frameOptions().disable())
                 .authorizeHttpRequests(authorize -> authorize
                         .antMatchers("/api/**").permitAll()
                         .requestMatchers(new AntPathRequestMatcher("/h2-console/**")).permitAll()
