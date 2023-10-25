@@ -1,6 +1,7 @@
 package com.cotiviti.ecommerce.service;
 
 import com.cotiviti.ecommerce.dto.*;
+import com.cotiviti.ecommerce.enums.UserRole;
 import com.cotiviti.ecommerce.model.User;
 import com.cotiviti.ecommerce.repository.UserRepository;
 import com.cotiviti.ecommerce.security.JwtProvider;
@@ -37,6 +38,7 @@ public class AuthService {
         newUser.setEmail(registerRequest.getEmail());
         newUser.setUsername(registerRequest.getUsername());
         newUser.setFullName(registerRequest.getFullName());
+        newUser.setRole(UserRole.USER);
         newUser.setPassword(passwordEncoder.encode(registerRequest.getPassword()));
         userRepository.save(newUser);
     }

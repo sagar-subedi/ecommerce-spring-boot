@@ -18,7 +18,7 @@ public class KhaltiService {
         String url = "https://a.khalti.com/api/v2/epayment/initiate/";
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
-        headers.set("Authorization", "Key c9128b58bbcc4ab28a6678291fb546c9");
+        headers.set("Authorization", "Key a3b7295c35034374a805eac82b55c5af");
         HttpEntity<KhaltiRequest> requestEntity = new HttpEntity<>(khaltiRequest, headers);
         ResponseEntity<String> responseEntity = restTemplate.exchange(
                 url,

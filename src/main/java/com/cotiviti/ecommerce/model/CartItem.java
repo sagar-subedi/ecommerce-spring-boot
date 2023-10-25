@@ -7,15 +7,11 @@ import javax.persistence.*;
 
 @Entity
 @Data
-@Table(name="products")
-public class Product {
+public class CartItem {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
     private int productId;
-    private String name;
-    private  String description;
-    private  String imageUrl;
-    private int price;
-    private String brand;
-
+    private int quantity;
+    private int userId;
 }

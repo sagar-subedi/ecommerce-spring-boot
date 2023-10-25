@@ -21,9 +21,9 @@ public class ProductController {
     }
 
     //Todo: implement later, currently dummy
-    @GetMapping("/getByCategory/{id}")
-    public List<Product> getProductsByCategory(){
-        return productService.getProductsByCategory();
+    @GetMapping("/brand/{name}")
+    public List<Product> getProductsByCategory(@PathVariable String name){
+        return productService.getProductsByCategory(name);
 
     }
 

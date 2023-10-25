@@ -1,10 +1,14 @@
 package com.cotiviti.ecommerce.controller;
 
 import com.cotiviti.ecommerce.dto.*;
+import com.cotiviti.ecommerce.model.User;
 import com.cotiviti.ecommerce.service.AuthService;
 import com.cotiviti.ecommerce.service.RefreshTokenService;
+import com.cotiviti.ecommerce.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/api/auth")
@@ -13,12 +17,21 @@ public class AuthController {
     private AuthService authService;
 
     @Autowired
+    private UserService userService;
+
+    @Autowired
     private RefreshTokenService refreshTokenService;
 
     @GetMapping("/users")
-    public String getUsers(){
-        return "Ram, Shyam, Hari";
+    public List<User> getUsers(){
+        return userService.getAllUsers();
     }
+
+    @GetMapping("/userId/{username}")
+    public  User getUser(@PathVariable String username) {
+        return userService.getUserRepository().findByUsername(username);
+    }
+
 
     @PostMapping("/register")
     public String registerUser(@RequestBody RegisterRequest registerRequest){

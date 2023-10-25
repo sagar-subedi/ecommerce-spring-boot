@@ -25,8 +25,8 @@ public class ProductService {
         productRepository.deleteById(id);
     }
 
-    public List<Product> getProductsByCategory() {
-        return new ArrayList<Product>();
+    public List<Product> getProductsByCategory(String brandName) {
+        return productRepository.findByBrand(brandName);
     }
 
     public Product getProductsById(int id) {

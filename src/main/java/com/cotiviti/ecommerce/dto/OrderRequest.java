@@ -11,5 +11,6 @@ public class OrderRequest {
     private  String shippingAddress;
     private int totalAmount;
     private  int userId;
+    private String username;
     List<OrderItem> orderItems;
 }

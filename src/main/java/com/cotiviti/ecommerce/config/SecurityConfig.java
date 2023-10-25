@@ -55,16 +55,8 @@ public class SecurityConfig {
                 .authorizeHttpRequests(authorize -> authorize
                         .antMatchers("/api/**").permitAll()
                         .requestMatchers(new AntPathRequestMatcher("/h2-console/**")).permitAll()
-//                        .requestMatchers("/api/auth/**").authenticated()
-//                        .permitAll()
-//                        .requestMatchers(HttpMethod.GET, "/api/subreddit")
-//                        .permitAll()
-//                        .requestMatchers(HttpMethod.GET, "/api/posts/")
-//                        .permitAll()
-//                        .requestMatchers(HttpMethod.GET, "/api/posts/**")
-//                        .permitAll()
-//                        .requestMatchers("/api/test/**")
-//                        .permitAll()
+                        .antMatchers("/api/orders/**").permitAll()
+//
 //                        .requestMatchers("/v2/api-docs",
 //                                "/configuration/ui",
 //                                "/swagger-resources/**",
